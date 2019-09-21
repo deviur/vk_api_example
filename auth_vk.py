@@ -47,10 +47,12 @@ def main():
     -------- Результаты ------
     ''' % (VERSION, AUTHOR)
 
+    print(INFO)
     session= auth_vk_token()
     if session:
-        print(INFO)
         print('Авторизация прошла успешно!')
+    else:
+        print('Авторизация не удалась!')
 
 
 if __name__ == "__main__":
