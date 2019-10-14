@@ -23,6 +23,15 @@ def get_friends(user_id):
     return api.friends.get(user_id=user_id)['items']
 
 
+def get_friends_from(user_id, city_id):
+    friends_from = []
+    friends = api.friends.get(user_id=user_id, fields='city')['items']
+    for friend in friends:
+        if 'city' in friend and friend['city']['id'] == city_id:
+            friends_from.append(friend['id'])
+    return friends_from
+
+
 def main():
 
     if len(sys.argv)>1:
@@ -35,6 +44,12 @@ def main():
     print('user_id')           # Выводим заголовок
     for friend in friends:
         print(friend)
+
+    friends = get_friends_from(user_id, 1)
+    print('user_id')           # Выводим заголовок
+    for friend in friends:
+        print(friend)
+    pass
 
 
 if __name__ == "__main__":

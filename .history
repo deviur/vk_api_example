@@ -1,10 +1,13 @@
+2019-10-06 19:47:59 
+1. Добавил функцию get_all_members в модуле getMembers.py
+
 2019-10-03 10:56:21 
 1. Добавил пример MakeListToSend.py
 2. Добавил getpass при вводе пароля в файле auth_vk.py
 
 2019-10-02 19:56:00 
 1. Добавил модуль getFriends.py
-2. Добавил модуль getMembers.py
+2. Добавил getMembers.py
 
 2019-09-21 22:24:44
 1. Добавил файл "requirements.txt"

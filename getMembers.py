@@ -19,8 +19,20 @@ V = '9.95' # Версия VK API
 session = auth_vk.auth_vk_token()
 api = vk.API(session, v=V)
 
+
 def get_members(group_id, fil=""):
     return api.groups.getMembers(group_id=group_id, filter=fil)['items']
+
+
+def get_all_members(group_id):
+    members = api.groups.getMembers(group_id=group_id)
+    count = members['count']
+    offset = 1000
+    members = members['items']
+    while offset < count:
+        members.extend(api.groups.getMembers(group_id=group_id, count=1000, offset=offset)['items'])
+        offset += 1000
+    return members
 
 
 def main():
@@ -33,6 +45,10 @@ def main():
     members = get_members(group_id)
 
     print('group_id')           # Выводим заголовок
+    # for member in members:
+    #     print(member)
+
+    members = get_all_members(group_id)
     for member in members:
         print(member)
 

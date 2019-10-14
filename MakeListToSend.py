@@ -5,7 +5,7 @@
 """
 Консольное приложение Python 3.5
 
-Простой пример получения списка друзей из ВК
+
 """
 
 import vk
@@ -23,7 +23,7 @@ api = vk.API(session, v=V)
 
 def main():
     # Получаем ID списки друзей и друзей попечителей Школы Граня
-    friends = getFriends.get_friends(USER_ID)
+    friends = getFriends.get_friends_from(USER_ID, 1)
     members = getMembers.get_members(GROUP_ID)  # Попечители школы, те, что в друзьях
 
     # Убираем из списка друзей попечителей друзей. У нас получается список кому отправлять сообщения

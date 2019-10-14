@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#TODO Получить список городов по ключевому слову в ВК
+# TODO Получить список городов по ключевому слову в ВК
 """
 Консольное приложение Python 3.5
 
@@ -10,13 +10,18 @@
 На входе будет ключевое слово keyword, а на выходе список городов в базе ВК
 """
 
-VERSION = '1.0.00 (21.09.2019)'
-AUTHOR = 'Deviur (https://github.com/deviur)'
-v ='9.95'
-
 import sys
 import vk
 import auth_vk
+
+VERSION = '1.0.00 (21.09.2019)'
+AUTHOR = 'Deviur (https://github.com/deviur)'
+v = '9.95'
+
+
+def get_city_id(keyword):
+    return api.database.getCities(country_id=1, q=keyword)['items']['id']
+    pass
 
 
 def main():
@@ -31,7 +36,7 @@ def main():
 
     print(INFO)
 
-    if len(sys.argv)>1:
+    if len(sys.argv) > 1:
         keyword = sys.argv[1]
     else:
         keyword = "Балашиха"
@@ -42,7 +47,7 @@ def main():
     # Запрос списка городов России (Cities) по ключевому слову
     Cities = api.database.getCities(country_id=1, q=keyword)['items']
 
-    #Выводим шапку списка городов
+    # Выводим шапку списка городов
     print("id; title")
 
     # Выводим список городов по запросу на экран
