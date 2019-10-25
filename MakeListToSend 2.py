@@ -29,17 +29,62 @@ api = vk.API(session, v=V)
 
 
 def main():
+    #     print("""<!DOCTYPE html>
+    # <html lang="en">
+    # <head>
+    #     <meta charset="UTF-8">
+    #     <title>Список для рассылки сообщений</title>
+    # </head>
+    # <body>
+    # <h1>Список для рассылки сообшщений</h1>
+    # <h2>Список попечителей из Москвы</h2><table>""")
+    #
+    #     members_1 = getMembers.get_all_members_from(GROUP_IDS[0], 1)
+    #     num = 1
+    #     for member in members_1:
+    #         print(
+    #             "<tr><td>" + str(num) + "</td><td>" + member['first_name'] + "</td><td>" + member['city']['title'] +
+    #             "</td><td><a href=https://vk.com/write" + str(member['id']) +
+    #             " target='blank'>Написать сообщение...</a></td></tr>")
+    #         num += 1
+    #
+    #     print("</table><h2>Список участников группы из Москвы</h2><table>")
+    #
+    #     members_2 = getMembers.get_all_members_from(GROUP_IDS[1], 1)
+    #
+    #     # Убираем из списка друзей попечителей друзей. У нас получается список кому отправлять сообщения
+    #     for member in members_1:
+    #         if member in members_2:
+    #             members_2.remove(member)
+    #
+    #     num = 1
+    #     for member in members_2:
+    #         print(
+    #             "<tr><td>" + str(num) + "</td><td>" + member['first_name'] + "</td><td>" + member['city']['title'] +
+    #             "</td><td><a href=https://vk.com/write" + str(member['id']) +
+    #             " target='blank'>Написать сообщение...</a></td></tr>")
+    #         num += 1
+    #
+    #     print("</table></body></html>")
 
-    members_from = []
-
-    # Получаем ID пользователей первой группы
-    members = getMembers.get_all_members(GROUP_IDS[0], "city,country")
-
+    protectors = getMembers.get_all_members_3(GROUP_IDS[0])
+    members = getMembers.get_all_members_3(GROUP_IDS[1])
+    print("id;first_name;last_name;city;url")
+    num = 1
     for member in members:
-        if 'city' in member and member['city']['id'] == CITY_ID:
-            members_from.append(member)
-
-    print(members_from)
+        if member in protectors:
+            continue
+        if "city" in member:
+            city = member["city"]["title"]
+        else:
+            city = "-"
+        print(str(member["id"]) + ";" +
+              member["first_name"] + ";" +
+              member["last_name"] + ";" +
+              city + ";" +
+              "https://vk.com/write" + str(member['id']))
+        num += 1
+    print(str(num))
 
 
 if __name__ == "__main__":

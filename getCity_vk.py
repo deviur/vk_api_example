@@ -21,7 +21,6 @@ v = '9.95'
 
 def get_city_id(keyword):
     return api.database.getCities(country_id=1, q=keyword)['items']['id']
-    pass
 
 
 def main():
