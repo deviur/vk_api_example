@@ -1,60 +1,72 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-#TODO Авторизация в ВК
-"""
-Консольное приложение Python 3.5
+""" Авторизация в ВК с помощю пароля
 
-Простой пример авторизации. Приложение использует access_token сохранённый в текстовом файле auth_vk.ini.
-В случае если access_token отсутствует или не действует, используется авторизация с помощью логина и пароля.
+Приложение использует access_token сохранённый в текстовом файле auth_vk.ini.
+В случае если access_token отсутствует, используется авторизация с помощью логина и пароля.
 После успешной авторизации access_token сохраняется в текстовом фале auth_vk.ini.
+
+Python:
+- 3.7
+
+Usage:
+python3 auth_vk.py
+
 """
 
-APP_ID='6478436'
-VERSION = '1.0.00 (07.05.2019)'
-AUTHOR = 'Deviur (https://github.com/deviur)'
-
-import vk
 import getpass
 
+import vk
 
-def auth_vk_password():
-    session = vk.AuthSession(app_id=APP_ID, user_login=input("VK user_login: "), user_password=getpass.getpass("VK user_password: "))
-    file = open("auth_vk.ini", 'w')
-    file.writelines(session.access_token)
-    return session
+APP_ID = '6478436'
+V = 9.95
+VERSION = '2.0.00 (26.10.2019)'
+AUTHOR = 'Deviur (https://github.com/deviur)'
 
 
-def auth_vk_token():
+def login_by_password():
     try:
+        session = vk.AuthSession(app_id=APP_ID, user_login=input("VK user_login: "),
+                                 user_password=getpass.getpass("VK user_password: "))
+    except vk.exceptions.VkAPIError:
+        print('Авторизация не удалась. Проверьте логин или пароль.\n')
+        return None
+    else:
+        file = open("auth_vk.ini", 'w')
+        file.writelines(session.access_token)
+        return session
+
+
+def login_by_token():
+    try:    # Проверяем наличие файла с token-ом
         file = open("auth_vk.ini", 'r')
-    except IOError as e:
-        access_token = auth_vk_password().access_token
+    except IOError:
+        session = login_by_password()
+        return session
     else:
         access_token = file.readline()
+        session = vk.Session(access_token=access_token)
 
-    session = vk.Session(access_token=access_token)
-
+    api = vk.API(session, v=V)
+    try:
+        api.users.get()
+    except vk.exceptions.VkAPIError:
+        session = login_by_password()
     return session
 
 
 def main():
-    INFO = '''
-    Программа проверки авторизации в ВК. 
-    Используется всеми программами пакета vk_api_example в качестве библиотеки.
-    Version: %s
-    Author: %s
-
-    -------- Результаты ------
-    ''' % (VERSION, AUTHOR)
-
-    print(INFO)
-    session= auth_vk_token()
-
-    if session:
-        print('Авторизация прошла успешно!')
+    session = login_by_token()
+    api = vk.API(session, v=V)
+    try:
+        user = api.users.get()[0]
+    except vk.exceptions.VkAPIError:
+        print('Авторизация не удалась. Повторите попытку.\n')
+        login_by_password()
     else:
-        print('Авторизация не удалась!')
+        print("Приветствую, {}!".format(user['first_name']))
+        print("Авторизация прошла успешно!")
 
 
 if __name__ == "__main__":
