@@ -6,23 +6,23 @@ import sys
 import auth_vk
 
 INFO = """ 
-Метод VK API database.getCity (https://vk.com/dev/database.getCities). 
-Возвращает список городов.
+Метод VK API groups.getMembers (https://vk.com/dev/groups.getMembers). 
+Возвращает список участников сообщества.
 
 Python:
 - 3.7
 
 Usage:
-python3 get_cities.py args [options]
+python3 get_members.py args [options]
 
-args - строка: аргументы метода database.getCity
-Нампример: python3 get_cities.py 'country_id=1&q=Балашиха&v=5.95'
+args - строка: аргументы метода groups.getMembers
+Нампример: python3 get_members.py 'group_id=157262974&count=10'
 """
 
 
 APP_ID = '6478436'
 V = 9.95
-VERSION = '1.0.00 (27.10.2019)'
+VERSION = '1.0.00 (28.10.2019)'
 AUTHOR = 'Deviur (https://github.com/deviur)'
 
 session = auth_vk.login_by_token()
@@ -30,7 +30,7 @@ api = vk.API(session, v=V)
 
 
 def do(request):
-    return api.database.getCities(**request)
+    return api.groups.getMembers(**request)
 
 
 def main():
