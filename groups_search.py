@@ -6,8 +6,8 @@ import sys
 import auth_vk
 
 INFO = """ 
-Метод VK API groups.search (https://vk.com/dev/groups.get). 
-Возвращает список сообществ указанного пользователя.
+Метод VK API groups.search (https://vk.com/dev/groups.search). 
+Jсуществляет поиск сообществ по заданной подстроке.
 
 Python:
 - 3.7
