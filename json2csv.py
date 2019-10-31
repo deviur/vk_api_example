@@ -4,6 +4,7 @@
 import sys
 import csv
 import json
+from functools import reduce
 
 INFO = """ 
 Преобразует структуру JSON в csv
@@ -24,19 +25,27 @@ AUTHOR = 'Deviur (https://github.com/deviur)'
 
 
 def do(request):
-    # print(request)
-    return api.groups.search(**request)
+    pass
 
 
 def main():
-    json_str = sys.stdin.read().replace("\"", "\\\"").replace("\'", "\"")
-    # print(json_str)
-    request = json.loads(json_str)
-    # print(request)
-    if "items" in request:
-        output = csv.writer(sys.stdout)
-        output.writerow(request["items"][0].keys())
-        for item in request["items"]:
+    # TODO/DONE Добавить замену False на false и True на true
+    # Преобразуем JSON-python к JSON-standart
+    repl_list = [("\"", "\\\""), ("\'", "\""), ("False", "false"), ("True", "true")]  # поседовательность замен
+    input_str = sys.stdin.read()
+    json_str = reduce(lambda s, r: s.replace(r[0], r[1]), repl_list, input_str)
+
+    # Загружаем строку JSON в словарь Python
+    json_dict = json.loads(json_str)
+
+    # TODO Добавить обработку вложенных словарей
+    # TODO Добавить обработку отсутствия ключа и данных словаря в списке (когда пользователь не указал)
+    # TODO/DONE сделать разделитель столбцов ";" вместо ","
+    if "items" in json_dict:
+        csv_dict = json_dict["items"]
+        output = csv.writer(sys.stdout, delimiter=';')
+        output.writerow(csv_dict[0].keys())
+        for item in csv_dict:
             output.writerow(item.values())
 
     # if len(sys.argv) > 1:
