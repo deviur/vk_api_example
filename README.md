@@ -14,5 +14,6 @@ pip3 install -r requirements.txt --local
 0. **get_cities.py** - возвращает список городов. Реализует метод VK API (https://vk.com/dev/database.getCities). 
 0. **get_members.py** - возвращает список учаснников группы. Реализует метод VK API groups.getMembers (https://vk.com/dev/groups.getMembers).
 0. **groups_get.py** - возвращает список групп указанного пользователя. Реализует метод VK API groups.get (https://vk.com/dev/groups.get).
-0. **groups.search.py** - осуществляет поиск сообществ по заданной подстроке. Реализует метод VK API groups.search (https://vk.com/dev/groups.search). 
+0. **groups_search.py** - осуществляет поиск сообществ по заданной подстроке. Реализует метод VK API groups.search (https://vk.com/dev/groups.search). 
 0. **json2csv.py** - конвертирует структуру json в csv.
+0. **friends_get.py** - Возвращает список идентификаторов друзей пользователя или расширенную информацию о них. Реализует метод VK API friends.get (https://vk.com/dev/friends.get).
