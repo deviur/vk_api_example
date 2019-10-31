@@ -10,6 +10,7 @@
 pip3 install -r requirements.txt --local
 ```
 ## Список файлов с описанием
+0. **main.py** - простой пример, демонстрирующий принципы работы с VK API.
 0. **auth_vk.py** - служит для авторизации приложения в ВК с помощью пароля или токена.
 0. **get_cities.py** - возвращает список городов. Реализует метод VK API (https://vk.com/dev/database.getCities). 
 0. **get_members.py** - возвращает список учаснников группы. Реализует метод VK API groups.getMembers (https://vk.com/dev/groups.getMembers).
