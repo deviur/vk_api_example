@@ -1,4 +1,4 @@
-# TODO ПРИМЕР РАБОТЫ С VK API
+# ПРИМЕР РАБОТЫ С VK API
 
 """ Консольное приложения на Python 3.5
 
@@ -65,7 +65,8 @@ for keyword in keywords_groups:
     f = open(filename, 'w')
 
     # Задаём заголовок csv-файла
-    fieldnames = ['sort2', 'id', 'type', 'is_closed', 'screen_name', 'name', 'members_count', 'contacts', 'photo_50', 'photo_100', 'photo_200']
+    fieldnames = ['sort2', 'id', 'type', 'is_closed', 'screen_name', 'name', 'members_count', 'contacts', 'photo_50',
+                  'photo_100', 'photo_200']
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
 
@@ -75,6 +76,6 @@ for keyword in keywords_groups:
         # Сохраняем порядок сортировки по отношению дневной посещаемости к количеству пользователей
         group['sort2'] = i
         writer.writerow(group)
-        i+=1
+        i += 1
 
-    #print(Groups)
+    # print(Groups)
