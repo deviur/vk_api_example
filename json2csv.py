@@ -46,15 +46,15 @@ def _get_sub_items(items: dict, parent_key: str = "") -> dict:
 
 def main():
     input_str = sys.stdin.read()
-    # DONE (не работает) попробовать сделать преобразование строки в словарь с помощью eval() вместо json.loads()
-
+    # DONE попробовать сделать преобразование строки в словарь с помощью eval() вместо json.loads()
+    json_dict = eval(input_str)
     # Преобразуем строку словаря python к стандарту JSON
-    # DONE Добавить замену False на false и True на true
-    list_to_replace = [("\"", "\\\""), ("\'", "\""), ("False", "false"), ("True", "true")]  # поседовательность замен
-    json_str = reduce(lambda s, r: s.replace(r[0], r[1]), list_to_replace, input_str)
-
-    # Загружаем строку JSON в словарь Python
-    json_dict = json.loads(json_str)
+    # DONE Добавить замену False на false и True на true. ПРИМЕР: Множественная замена
+    # list_to_replace = [("\"", "\\\""), ("\'", "\""), ("False", "false"), ("True", "true")]  # поседовательность замен
+    # json_str = reduce(lambda s, r: s.replace(r[0], r[1]), list_to_replace, input_str)
+    #
+    # # Загружаем строку JSON в словарь Python
+    # json_dict = json.loads(json_str)
 
     if "items" in json_dict:  # json без items не обрабатываем
 
