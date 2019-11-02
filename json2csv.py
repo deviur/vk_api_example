@@ -3,8 +3,8 @@
 
 import sys
 import csv
-import json
-from functools import reduce
+# import json
+# from functools import reduce
 
 INFO = """ 
 Преобразует структуру JSON в csv
