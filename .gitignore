@@ -1,6 +1,6 @@
 __pycache__
 .idea/
-/auth_vk.ini
-/result.*
-/*.xlsx*
-
+*.ini
+result.*
+*.xlsx*
+venv/
