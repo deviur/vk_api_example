@@ -47,6 +47,9 @@ def login_by_token():
 
 
 def main():
+    print("\n", REPORT_TIME)
+    print(os.getcwd())
+
     # Авторизация в ВК
     session = login_by_token()
 
@@ -64,7 +67,6 @@ def main():
     #     print("Авторизация прошла успешно!")
 
     friends_to_save = api.friends.get(user_id=0, fields='sex, bdate, city, relation, status')
-    print(REPORT_TIME)
 
     try:  # Проверяем наличие файла со списком друзей
         file = open("friends.ini", 'r')
