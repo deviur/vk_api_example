@@ -48,7 +48,7 @@ def main():
         return
 
     # Загружаем список друзей за предыдущий период из файла в словарь
-    file = open("friends.ini", 'r')
+    # file = open("friends.ini", 'r')
     old_friends = eval(file.read())
 
     # Создаём словарь текущих друзей
