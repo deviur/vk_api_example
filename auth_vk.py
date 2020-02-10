@@ -16,7 +16,7 @@ AUTHOR = 'Deviur (https://github.com/deviur)'
 
 import vk
 import getpass
-
+import auth_vk
 
 def auth_vk_password():
     session = vk.AuthSession(app_id=APP_ID, user_login=input("VK user_login: "), user_password=getpass.getpass("VK user_password: "))
@@ -49,7 +49,7 @@ def main():
     ''' % (VERSION, AUTHOR)
 
     print(INFO)
-    session= auth_vk_token()
+    session= auth_vk.auth_vk_token()
 
     if session:
         print('Авторизация прошла успешно!')

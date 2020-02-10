@@ -9,7 +9,7 @@ from auth_vk import *
 APP_ID = '6478436'
 V = 9.85
 # LIST_TO_SEND = ['deleted', 'relation', 'status', 'deactivated']
-INCLUDE = ['deleted', 'relation', 'deactivated']    # Свойства пользователя, которые отслеживать
+INCLUDE = ['deleted', 'relation']    # Свойства пользователя, которые отслеживать
 EXCLUDE = ['track_code', 'online', 'status_audio']  # Свойства пользователя, которые не отслеживать
 USER_ID = 133147577
 REPORT_TIME = datetime.datetime.now()
